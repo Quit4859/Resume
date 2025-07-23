@@ -303,7 +303,7 @@
     .about-details {
       grid-column: span 2;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
 
@@ -314,6 +314,10 @@
       padding: 1.5rem;
       text-align: center;
       transition: all 0.3s ease;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .detail-card:hover {
@@ -325,13 +329,16 @@
 
     .detail-card h3 {
       color: #0ff;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
     }
 
     .detail-card p {
       color: #e0f7fa;
       font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
     }
 
     .corner {
@@ -649,6 +656,15 @@
         grid-column: span 1;
       }
       
+      .about-details {
+        grid-template-columns: 1fr;
+      }
+      
+      .detail-card {
+        min-height: auto;
+        padding: 1rem;
+      }
+      
       nav {
         gap: 1rem;
       }
@@ -722,8 +738,7 @@
     
     <div class="about-content">
       <div class="about-text">
-        <h2>Builder of the Digital Future
-</h2>
+        <h2>Builder of the Digital Future</h2>
         <p>Aspiring computer science professional with hands-on experience in web development and project implementation. Currently pursuing a Diploma in Computer Science, with a solid foundation in programming, web technologies, and problem-solving. Passionate about building impactful projects and committed to continuous learning through self-study, events, and practical experience.</p>
       </div>
       
@@ -733,24 +748,35 @@
       
       <div class="about-details">
         <div class="detail-card">
-          <h3>Experience</h3>
-          <p>5+ years Specialized in building real-time systems that feel alive and untouchable.</p>
+          <div>
+            <h3>Experience</h3>
+            <p>5+ years specialized in building real-time systems that feel alive and untouchable.</p>
+          </div>
         </div>
         <div class="detail-card">
-          <h3>Specialties</h3>
-          <p>Clean Web Interfaces (HTML, CSS, JS, PHP)<br>Server-side Programming & MySQL  
-<br>Game Mechanics Prototyping  
-<br>Secure Login Systems  
-<br>UI/UX with functional logic  
-<br>Git, VS Code, Chrome DevTools</p>
+          <div>
+            <h3>Specialties</h3>
+            <p>
+              Clean Web Interfaces (HTML, CSS, JS, PHP)<br>
+              Server-side Programming & MySQL<br>  
+              Game Mechanics Prototyping<br>  
+              Secure Login Systems<br>  
+              UI/UX with functional logic<br>  
+              Git, VS Code, Chrome DevTools
+            </p>
+          </div>
         </div>
         <div class="detail-card">
-          <h3>Philosophy</h3>
-          <p>A good interface tells a story. A good developer builds the world behind it.</p>
+          <div>
+            <h3>Philosophy</h3>
+            <p>A good interface tells a story. A good developer builds the world behind it.</p>
+          </div>
         </div>
         <div class="detail-card">
-          <h3>Location</h3>
-          <p>Maybe Not needed</p>
+          <div>
+            <h3>Location</h3>
+            <p>Available worldwide</p>
+          </div>
         </div>
       </div>
     </div>
