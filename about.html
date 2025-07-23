@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Jordan Nova</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: #0e111a;
+      color: #e0f7fa;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Static scanline effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(16, 16, 16, 0) 50%,
+        rgba(16, 16, 16, 0.25) 50%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .hero-card {
+      background: #111426;
+      border-radius: 30px;
+      box-shadow: 0 0 40px rgba(0,255,255,0.5);
+      padding: 2.5rem;
+      max-width: 800px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #0ff, #f0f, #0ff);
+      z-index: -1;
+      border-radius: 32px;
+      animation: borderGlow 3s linear infinite;
+      background-size: 400%;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #111426;
+      z-index: -1;
+      border-radius: 30px;
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0 0; }
+      50% { background-position: 300% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .hero-card.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-card h1 {
+      font-size: 2.8rem;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+    }
+
+    .hero-card h1 span {
+      color: #0ff;
+    }
+
+    .hero-card p.subtitle {
+      font-size: 1.2rem;
+      color: #8ef;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.8rem 2rem;
+      border: 2px solid #0ff;
+      color: #0e111a;
+      background: #0ff;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(0,255,255,0.7);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: #0ff;
+    }
+
+    .btn:hover {
+      background: #0cf;
+      color: #111426;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0,255,255,0.9);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #8ef;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #0ff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: #0ff;
+      position: relative;
+    }
+
+    nav a.active::before {
+      content: '>';
+      position: absolute;
+      left: -15px;
+      color: #0ff;
+    }
+
+    nav a.active::after {
+      content: '<';
+      position: absolute;
+      right: -15px;
+      color: #0ff;
+    }
+
+    .section {
+      background: #111426;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #0ff, #f0f, #0ff);
+      z-index: -1;
+      border-radius: 22px;
+      animation: borderGlow 3s linear infinite;
+      background-size: 400%;
+    }
+
+    .section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #111426;
+      z-index: -1;
+      border-radius: 20px;
+    }
+
+    .section.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1, h2, h3 {
+      color: #0ff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #8ef;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* About page specific styles */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about-text {
+      grid-column: span 2;
+      text-align: center;
+    }
+
+    .about-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      border: 2px solid #0ff;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-details {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .detail-card {
+      background: rgba(0,255,255,0.05);
+      border: 1px solid rgba(0,255,255,0.2);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .detail-card:hover {
+      background: rgba(0,255,255,0.1);
+      border-color: #0ff;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,255,255,0.2);
+    }
+
+    .detail-card h3 {
+      color: #0ff;
+      margin-bottom: 0.5rem;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .detail-card p {
+      color: #e0f7fa;
+      font-size: 0.9rem;
+    }
+
+    .corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-color: #0ff;
+      border-style: solid;
+      border-width: 0;
+      opacity: 0.7;
+    }
+
+    .corner-tl {
+      top: 10px;
+      left: 10px;
+      border-top-width: 3px;
+      border-left-width: 3px;
+    }
+
+    .corner-tr {
+      top: 10px;
+      right: 10px;
+      border-top-width: 3px;
+      border-right-width: 3px;
+    }
+
+    .corner-bl {
+      bottom: 10px;
+      left: 10px;
+      border-bottom-width: 3px;
+      border-left-width: 3px;
+    }
+
+    .corner-br {
+      bottom: 10px;
+      right: 10px;
+      border-bottom-width: 3px;
+      border-right-width: 3px;
+    }
+
+    /* ===== Cyberpunk Terminal Effect ===== */
+    .terminal-text {
+      border-right: 0.15em solid #0ff;
+    }
+
+    /* ===== Holographic UI Elements ===== */
+    .holographic-element {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid #0ff;
+      border-radius: 50%;
+      filter: blur(5px);
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid #0ff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+
+    /* Light theme styles */
+    body.light-theme {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    body.light-theme .hero-card,
+    body.light-theme .section {
+      background: #ffffff;
+      color: #333;
+    }
+
+    body.light-theme .hero-card::after,
+    body.light-theme .section::after {
+      background: #ffffff;
+    }
+
+    body.light-theme h1,
+    body.light-theme h2,
+    body.light-theme h3,
+    body.light-theme .hero-card h1 span {
+      color: #0066cc;
+    }
+
+    body.light-theme p,
+    body.light-theme .subtitle {
+      color: #555;
+    }
+
+    /* ===== Particle Background ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* ===== Cyberpunk Loading Screen ===== */
+    .cyberpunk-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0e111a;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .loader-grid {
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
+
+    .grid-line {
+      position: absolute;
+      background: rgba(0, 255, 255, 0.1);
+    }
+
+    .grid-line:nth-child(1) {
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 100%;
+    }
+
+    .grid-line:nth-child(2) {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+    }
+
+    .grid-line:nth-child(3) {
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: #0ff;
+      animation: load 2.5s ease-in-out forwards;
+    }
+
+    .loader-text {
+      margin-top: 20px;
+      color: #0ff;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    @keyframes load {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+
+    /* ===== Cyberpunk Notification ===== */
+    .cyber-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #111426;
+      border-left: 4px solid #0ff;
+      color: #8ef;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+      z-index: 1001;
+      font-family: 'Rajdhani', sans-serif;
+      max-width: 300px;
+    }
+
+    .cyber-notification.active {
+      transform: translateX(0);
+    }
+
+    /* ===== Cyberpunk Console ===== */
+    .cyber-console {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 300px;
+      background: rgba(0, 10, 20, 0.95);
+      border-top: 2px solid #0ff;
+      z-index: 1002;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      font-family: monospace;
+      color: #0ff;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cyber-console.active {
+      transform: translateY(0);
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      background: rgba(0, 255, 255, 0.1);
+      margin-bottom: 10px;
+    }
+
+    .console-close {
+      background: transparent;
+      border: none;
+      color: #0ff;
+      cursor: pointer;
+    }
+
+    .console-output {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      padding: 10px;
+    }
+
+    .console-input {
+      display: flex;
+      align-items: center;
+    }
+
+    .prompt {
+      margin-right: 10px;
+    }
+
+    .console-cmd {
+      flex-grow: 1;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #0ff;
+      color: #0ff;
+      font-family: monospace;
+      padding: 5px;
+      outline: none;
+    }
+
+    /* ===== Cyberpunk Clock ===== */
+    .cyber-clock {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid #0ff;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-family: 'Orbitron', sans-serif;
+      z-index: 1000;
+    }
+
+    .cyber-clock .time {
+      font-size: 1.2rem;
+      color: #0ff;
+    }
+
+    .cyber-clock .date {
+      font-size: 0.8rem;
+      color: #8ef;
+      text-align: center;
+    }
+
+    /* ===== Matrix Background ===== */
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.15;
+    }
+
+    /* ===== Cyberpunk HUD ===== */
+    .cyber-hud {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .hud-item {
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid #0ff;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      color: #8ef;
+    }
+
+    .hud-item span {
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    /* ===== Page Transition ===== */
+    .page-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0ff;
+      z-index: 9998;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .page-transition.active {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .hero-card {
+        padding: 1.5rem;
+      }
+      
+      .hero-card h1 {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-text, .about-details {
+        grid-column: span 1;
+      }
+      
+      nav {
+        gap: 1rem;
+      }
+
+      .cyber-console {
+        height: 200px;
+      }
+
+      .cyber-hud {
+        bottom: 10px;
+        left: 10px;
+        gap: 8px;
+      }
+
+      .hud-item {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cyberpunk Loading Screen -->
+  <div class="cyberpunk-loader">
+    <div class="loader-grid">
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="progress-bar"></div>
+      <div class="loader-text">SYSTEM INITIALIZATION</div>
+    </div>
+  </div>
+
+  <!-- Background Elements -->
+  <div id="particles-js"></div>
+  <canvas id="matrix" class="matrix-bg"></canvas>
+
+  <!-- Cyberpunk UI Elements -->
+  <div class="cyber-clock">
+    <div class="time"></div>
+    <div class="date"></div>
+  </div>
+
+  <div class="theme-toggle">
+    <i class="fas fa-adjust"></i>
+  </div>
+
+  <div class="cyber-hud">
+    <div class="hud-item" id="hud-cpu">CPU: <span>87%</span></div>
+    <div class="hud-item" id="hud-mem">MEM: <span>64%</span></div>
+    <div class="hud-item" id="hud-net">NET: <span>2.4MB/s</span></div>
+  </div>
+
+  <div class="cyber-notification" id="cyberNotif"></div>
+
+  <!-- Main Content -->
+  <div class="hero-card animate">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+    
+    <h1 class="terminal-text">About <span>Me</span></h1>
+    <p class="subtitle">The Mind Behind the Code</p>
+    <div class="buttons">
+      <a class="btn" href="contact.html">Contact Me</a>
+      <a class="btn outline" href="certificates.html">My Certifications</a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="certificates.html">Certificates</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div class="section animate">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+    
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Cyberpunk Developer & Digital Creator</h2>
+        <p>I'm Jordan Nova, a frontend developer specializing in creating immersive cyberpunk-inspired digital experiences. With 5+ years in the tech industry, I blend cutting-edge web technologies with dystopian aesthetics to build interfaces that feel like they're from the future.</p>
+      </div>
+      
+      <div class="about-image">
+        <img src="https://via.placeholder.com/400x500/111426/0ff?text=Jordan+Nova" alt="Jordan Nova Portrait">
+      </div>
+      
+      <div class="about-details">
+        <div class="detail-card">
+          <h3>Experience</h3>
+          <p>5+ years developing futuristic web applications and interactive experiences</p>
+        </div>
+        <div class="detail-card">
+          <h3>Specialties</h3>
+          <p>Cyberpunk UI/UX, WebGL, Interactive Animations, Neon Aesthetics</p>
+        </div>
+        <div class="detail-card">
+          <h3>Philosophy</h3>
+          <p>Code should be as beautiful as the interfaces it creates</p>
+        </div>
+        <div class="detail-card">
+          <h3>Location</h3>
+          <p>Neo-Tokyo (Remote Worldwide)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cyberpunk Console -->
+  <div class="cyber-console">
+    <div class="console-header">
+      <span>SYSTEM TERMINAL</span>
+      <button class="console-close">&times;</button>
+    </div>
+    <div class="console-output"></div>
+    <div class="console-input">
+      <span class="prompt">>_</span>
+      <input type="text" class="console-cmd">
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll animation
+      const scrollAnimate = () => {
+        document.querySelectorAll('.hero-card, .section').forEach(el => {
+          const top = el.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (top < windowHeight - 50) {
+            el.classList.add('animate');
+          }
+        });
+      };
+      
+      document.addEventListener('scroll', scrollAnimate);
+      window.addEventListener('load', scrollAnimate);
+      
+      // Initialize particles.js
+      if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#0ff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.5, random: true },
+            size: { value: 3, random: true },
+            line_linked: { enable: true, distance: 150, color: "#0ff", opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "repulse" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+
+      // Theme toggle
+      const themeToggle = document.querySelector('.theme-toggle');
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+      });
+
+      // Check for saved theme preference
+      if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-theme');
+      }
+
+      // Add holographic elements
+      for (let i = 0; i < 5; i++) {
+        const hologram = document.createElement('div');
+        hologram.className = 'holographic-element';
+        hologram.style.left = `${Math.random() * 100}%`;
+        hologram.style.top = `${Math.random() * 100}%`;
+        hologram.style.width = `${50 + Math.random() * 100}px`;
+        hologram.style.height = hologram.style.width;
+        hologram.style.animationDelay = `${Math.random() * 5}s`;
+        document.body.appendChild(hologram);
+      }
+
+      // Notification system
+      function showNotification(message) {
+        const notif = document.getElementById('cyberNotif');
+        notif.textContent = message;
+        notif.classList.add('active');
+        
+        setTimeout(() => {
+          notif.classList.remove('active');
+        }, 3000);
+      }
+
+      // Clock update
+      function updateClock() {
+        const now = new Date();
+        const timeElement = document.querySelector('.cyber-clock .time');
+        const dateElement = document.querySelector('.cyber-clock .date');
+        
+        timeElement.textContent = now.toLocaleTimeString('en-US', { hour12: false });
+        dateElement.textContent = now.toLocaleDateString('en-US', { 
+          weekday: 'short', 
+          year: 'numeric', 
+          month: 'short', 
+          day: 'numeric' 
+        });
+      }
+
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      // HUD update
+      function updateHUD() {
+        document.getElementById('hud-cpu').querySelector('span').textContent = 
+          Math.floor(70 + Math.random() * 30) + '%';
+        document.getElementById('hud-mem').querySelector('span').textContent = 
+          Math.floor(50 + Math.random() * 50) + '%';
+        document.getElementById('hud-net').querySelector('span').textContent = 
+          (Math.random() * 5).toFixed(1) + 'MB/s';
+      }
+
+      setInterval(updateHUD, 3000);
+      updateHUD();
+
+      // Matrix background
+      const canvas = document.getElementById('matrix');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const rainDrops = [];
+        
+        for (let x = 0; x < columns; x++) {
+          rainDrops[x] = 1;
+        }
+        
+        const draw = () => {
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          
+          ctx.fillStyle = '#0ff';
+          ctx.font = fontSize + 'px monospace';
+          
+          for (let i = 0; i < rainDrops.length; i++) {
+            const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+            ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+            
+            if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+              rainDrops[i] = 0;
+            }
+            rainDrops[i]++;
+          }
+        };
+        
+        setInterval(draw, 30);
+        
+        window.addEventListener('resize', function() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        });
+      }
+
+      // Console functionality
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.altKey && e.key === 't') {
+          document.querySelector('.cyber-console').classList.toggle('active');
+        }
+      });
+
+      document.querySelector('.console-close').addEventListener('click', function() {
+        document.querySelector('.cyber-console').classList.remove('active');
+      });
+
+      document.querySelector('.console-cmd').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          const cmd = this.value;
+          const output = document.querySelector('.console-output');
+          
+          output.innerHTML += `<div>> ${cmd}</div>`;
+          
+          // Process commands
+          if (cmd === 'help') {
+            output.innerHTML += `<div>Available commands: help, clear, theme, about</div>`;
+          } else if (cmd === 'clear') {
+            output.innerHTML = '';
+          } else if (cmd === 'theme light') {
+            document.body.classList.add('light-theme');
+            output.innerHTML += `<div>Theme set to light mode</div>`;
+          } else if (cmd === 'theme dark') {
+            document.body.classList.remove('light-theme');
+            output.innerHTML += `<div>Theme set to dark mode</div>`;
+          } else {
+            output.innerHTML += `<div>Unknown command: ${cmd}</div>`;
+          }
+          
+          this.value = '';
+          output.scrollTop = output.scrollHeight;
+        }
+      });
+
+      // Page transitions
+      document.querySelectorAll('a').forEach(link => {
+        if (link.href && !link.href.startsWith('#')) {
+          link.addEventListener('click', function(e) {
+            if (this.href === window.location.href) return;
+            
+            e.preventDefault();
+            const transition = document.createElement('div');
+            transition.className = 'page-transition';
+            document.body.appendChild(transition);
+            
+            setTimeout(() => {
+              transition.classList.add('active');
+            }, 10);
+            
+            setTimeout(() => {
+              window.location.href = this.href;
+            }, 500);
+          });
+        }
+      });
+    });
+
+    // Hide loader when page is loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.cyberpunk-loader').style.opacity = '0';
+        setTimeout(function() {
+          document.querySelector('.cyberpunk-loader').style.display = 'none';
+        }, 500);
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
