@@ -948,8 +948,9 @@
         if (e.key === 'Enter') {
           const cmd = this.value;
           const output = document.querySelector('.console-output');
+          const escapedCmd = cmd.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/"/g, '&quot;');
           
-          output.innerHTML += `<div>> ${cmd}</div>`;
+          output.innerHTML += `<div>> ${escapedCmd}</div>`;
           
           // Process commands
           if (cmd === 'help') {
@@ -963,7 +964,7 @@
             document.body.classList.remove('light-theme');
             output.innerHTML += `<div>Theme set to dark mode</div>`;
           } else {
-            output.innerHTML += `<div>Unknown command: ${cmd}</div>`;
+            output.innerHTML += `<div>Unknown command: ${escapedCmd}</div>`;
           }
           
           this.value = '';
